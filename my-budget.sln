@@ -25,6 +25,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sandbox", "sandbox", "{5690
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sandbox-xtb", "api\src\sand-box\sandbox-xtb\sandbox-xtb.csproj", "{5078DD52-EB08-4F12-A2C3-EF1F99341CD8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyncAPIConnect", "api\src\sand-box\xAPI25-XTB-net\src\SyncAPIConnector\SyncAPIConnect.csproj", "{E6BC484B-A042-4CA6-9079-E91136D92207}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xAPITest", "api\src\sand-box\xAPI25-XTB-net\src\xAPITest\xAPITest.csproj", "{3F0B8C9E-EBFD-4A27-8080-D60418449217}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{5078DD52-EB08-4F12-A2C3-EF1F99341CD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5078DD52-EB08-4F12-A2C3-EF1F99341CD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5078DD52-EB08-4F12-A2C3-EF1F99341CD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6BC484B-A042-4CA6-9079-E91136D92207}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6BC484B-A042-4CA6-9079-E91136D92207}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6BC484B-A042-4CA6-9079-E91136D92207}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6BC484B-A042-4CA6-9079-E91136D92207}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F0B8C9E-EBFD-4A27-8080-D60418449217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F0B8C9E-EBFD-4A27-8080-D60418449217}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F0B8C9E-EBFD-4A27-8080-D60418449217}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F0B8C9E-EBFD-4A27-8080-D60418449217}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +78,8 @@ Global
 		{7AB43E87-91AA-4CF1-A78D-0BB0EB4F6766} = {02A7FD0C-FFA7-49BC-9401-BADFF1D6579B}
 		{56901D39-A6F5-4C04-B873-321BC76A62F5} = {F1D80183-F75C-425A-A05B-EFCE1DFC72D2}
 		{5078DD52-EB08-4F12-A2C3-EF1F99341CD8} = {56901D39-A6F5-4C04-B873-321BC76A62F5}
+		{E6BC484B-A042-4CA6-9079-E91136D92207} = {56901D39-A6F5-4C04-B873-321BC76A62F5}
+		{3F0B8C9E-EBFD-4A27-8080-D60418449217} = {56901D39-A6F5-4C04-B873-321BC76A62F5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {08A59A3E-C33D-4662-8277-1B2ED0E1230A}
