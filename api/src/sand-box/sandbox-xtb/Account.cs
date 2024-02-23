@@ -1,4 +1,6 @@
-﻿using xAPI.Commands;
+﻿using System.Diagnostics;
+using xAPI.Codes;
+using xAPI.Commands;
 using xAPI.Records;
 using xAPI.Responses;
 using xAPI.Sync;
@@ -58,6 +60,19 @@ namespace sandbox_xtb
             }
             
             Console.Read();
+
+        }
+
+
+        public void GetMyTrades(SyncAPIConnector connector) 
+        {
+            // Execute GetTrades command
+            TradesResponse tradesResponse = APICommandFactory.ExecuteTradesCommand(connector, true);
+
+            foreach (var trade in tradesResponse.TradeRecords)
+            {
+                Console.WriteLine(" > " + trade.Symbol + " | volumen: " + trade.Volume + " | open price: " + trade.Open_price);
+            }
 
         }
     }

@@ -7,5 +7,6 @@ SyncAPIConnector connector = new SyncAPIConnector(serverData);
 Account account = new Account();
 account.Login(1234, "haslo", connector);
 
-account.GetAllSymbols(connector);
+//account.GetAllSymbols(connector);
 
+account.GetMyTrades(connector);
