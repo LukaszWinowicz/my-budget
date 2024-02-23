@@ -27,12 +27,9 @@ namespace sandbox_xtb
                 LoginResponse loginResponse = APICommandFactory.ExecuteLoginCommand(connector, credentials, true);
                 Console.WriteLine("Logged in as: " + userId);
 
-                // Execute GetServerTime command
-                ServerTimeResponse serverTimeResponse = APICommandFactory.ExecuteServerTimeCommand(connector, true);
-                Console.WriteLine("Server time: " + serverTimeResponse.TimeString);
-
-                // Token
-                Console.WriteLine("Token: " + loginResponse.StreamSessionId);
+                // Connection to streaming
+                Console.WriteLine("Connection to streaming");
+                connector.Streaming.Connect();
 
             }
             catch (Exception ex)
@@ -41,5 +38,6 @@ namespace sandbox_xtb
             }
             Console.Read();
         }
+
     }
 }
