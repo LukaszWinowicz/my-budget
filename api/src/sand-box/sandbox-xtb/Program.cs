@@ -1,11 +1,11 @@
 ﻿using sandbox_xtb;
-using xAPI.Commands;
-using xAPI.Records;
-using xAPI.Responses;
 using xAPI.Sync;
 
-AccountStreaming accountStreaming = new AccountStreaming();
-accountStreaming.Login(1234, "haslo");
+Server serverData = Servers.DEMO;
+SyncAPIConnector connector = new SyncAPIConnector(serverData);
 
+Account account = new Account();
+account.Login(1234, "haslo", connector);
 
+account.GetAllSymbols(connector);
 
