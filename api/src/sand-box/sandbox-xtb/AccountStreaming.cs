@@ -5,7 +5,7 @@ using xAPI.Sync;
 
 namespace sandbox_xtb
 {
-    public class Account
+    public class AccountStreaming
     {
         public void Login(long userId, string password)
         {
@@ -38,6 +38,8 @@ namespace sandbox_xtb
             }
             Console.Read();
         }
+
+
 
     }
 }

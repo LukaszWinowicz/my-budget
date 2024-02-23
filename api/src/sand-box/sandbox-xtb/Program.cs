@@ -4,7 +4,8 @@ using xAPI.Records;
 using xAPI.Responses;
 using xAPI.Sync;
 
-Account account = new Account();
-account.Login(1234, "haslo");
+AccountStreaming accountStreaming = new AccountStreaming();
+accountStreaming.Login(1234, "haslo");
+
 
 
