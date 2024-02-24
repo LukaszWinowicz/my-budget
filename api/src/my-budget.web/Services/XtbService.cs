@@ -22,10 +22,10 @@ namespace my_budget.web.Services
             return loginResponse;
         }
 
-        /*public TradesResponse GetMyTrades()
+        public TradesResponse GetMyTrades()
         {
             TradesResponse tradesResponse = APICommandFactory.ExecuteTradesCommand(connector, true);
-
-        }*/
+            return tradesResponse;
+        }
     }
 }

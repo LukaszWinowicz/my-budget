@@ -6,6 +6,6 @@ namespace my_budget.web.Services
     public interface IXtbService
     {
         LoginResponse Login(LoginModel loginModel);
-       // TradesResponse GetMyTrades();
+        TradesResponse GetMyTrades();
     }
 }

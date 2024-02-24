@@ -34,12 +34,23 @@ namespace my_budget.web.Controllers
             }
         }
 
-        //[HttpGet]
-        //public IActionResult GetMyTrades()
-        //{            
-        //    return Ok(tradesResponse.TradeRecords);
-        //}
+        [HttpGet]
+        public IActionResult GetMyTrades()
+        {
 
-        
+            try
+            {
+                var response = _xtbService.GetMyTrades();
+                return Ok(response.TradeRecords);
+            }
+            catch (Exception ex)
+            {
+
+                return Unauthorized(new { message = "An exception occured: " + ex.ToString() });
+            }
+            
+        }
+
+
     }
 }
