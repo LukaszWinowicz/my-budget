@@ -17,8 +17,6 @@ namespace my_budget.web.Controllers
         [HttpPost]
         public IActionResult Legin([FromBody] LoginModel loginModel) 
         {
-            //Server serverData = Servers.DEMO;
-
             string appName = "firstApp";
             string appId = "";
 
