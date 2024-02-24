@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using my_budget.web.Models;
+using my_budget.web.Services;
 using xAPI.Commands;
 using xAPI.Responses;
 using xAPI.Sync;
@@ -10,27 +12,20 @@ namespace my_budget.web.Controllers
     [ApiController]
     public class XtbController : ControllerBase
     {
-
-        private static Server serverData = Servers.DEMO;
-        private static SyncAPIConnector connector = new SyncAPIConnector(serverData);
+        private readonly IXtbService _xtbService;
+        public XtbController(IXtbService xtbService)
+        {
+            _xtbService = xtbService;
+        }
 
         [HttpPost]
         public IActionResult Legin([FromBody] LoginModel loginModel) 
         {
-            //Server serverData = Servers.DEMO;
-
-            string appName = "firstApp";
-            string appId = "";
-
+            
             try
             {
-                // Login to server
-                Credentials credentials = new Credentials(loginModel.userId, loginModel.password, appId, appName);
-                LoginResponse loginResponse = APICommandFactory.ExecuteLoginCommand(connector, credentials, true);
-
-                // Login Response - StreamSessionId
-                var StreamSessionId = loginResponse.StreamSessionId;
-                return Ok(loginResponse);
+                var response = _xtbService.Login(loginModel);
+                return Ok(response);
 
             }
             catch (Exception ex)
@@ -41,15 +36,21 @@ namespace my_budget.web.Controllers
 
         [HttpGet]
         public IActionResult GetMyTrades()
-        {            
-            TradesResponse tradesResponse = APICommandFactory.ExecuteTradesCommand(connector, true);
-            return Ok(tradesResponse.TradeRecords);
+        {
+
+            try
+            {
+                var response = _xtbService.GetMyTrades();
+                return Ok(response.TradeRecords);
+            }
+            catch (Exception ex)
+            {
+
+                return Unauthorized(new { message = "An exception occured: " + ex.ToString() });
+            }
+            
         }
 
-        public class LoginModel
-        {
-            public string userId { get; set; }
-            public string password { get; set; }
-        }
+
     }
 }
