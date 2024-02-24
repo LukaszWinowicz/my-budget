@@ -11,19 +11,19 @@ namespace my_budget.web.Controllers
     public class XtbController : ControllerBase
     {
 
+        private static Server serverData = Servers.DEMO;
+        private static SyncAPIConnector connector = new SyncAPIConnector(serverData);
+
         [HttpPost]
         public IActionResult Legin([FromBody] LoginModel loginModel) 
         {
-            Server serverData = Servers.DEMO;
+            //Server serverData = Servers.DEMO;
 
             string appName = "firstApp";
             string appId = "";
 
             try
             {
-                // Connect to server
-                SyncAPIConnector connector = new SyncAPIConnector(serverData);
-
                 // Login to server
                 Credentials credentials = new Credentials(loginModel.userId, loginModel.password, appId, appName);
                 LoginResponse loginResponse = APICommandFactory.ExecuteLoginCommand(connector, credentials, true);
@@ -39,9 +39,16 @@ namespace my_budget.web.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult GetMyTrades()
+        {            
+            TradesResponse tradesResponse = APICommandFactory.ExecuteTradesCommand(connector, true);
+            return Ok(tradesResponse.TradeRecords);
+        }
+
         public class LoginModel
         {
-            public long userId { get; set; }
+            public string userId { get; set; }
             public string password { get; set; }
         }
     }
