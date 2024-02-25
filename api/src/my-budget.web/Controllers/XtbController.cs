@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using my_budget.web.Models;
 using my_budget.web.Services;
 using xAPI.Commands;
+using xAPI.Records;
 using xAPI.Responses;
 using xAPI.Sync;
 
@@ -35,20 +36,20 @@ namespace my_budget.web.Controllers
             }
         }
 
-        //[HttpGet]
-        //public IActionResult GetMyAccountValue() 
-        //{
-        //    try
-        //    {
-        //        var response = _xtbService.GetMyAccountValue();
-        //        return Ok(response);
-        //    }
-        //    catch (Exception ex)
-        //    {
+        [HttpGet("GetMyAccountValueByStreaming")]
+        public IActionResult GetMyAccountValueByStreaming()
+        {
+            try
+            {
 
-        //        throw;
-        //    }
-        //}
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+
+                return Unauthorized(new { message = "An exception occured: " + ex.ToString() });
+            }
+        }
 
         [HttpGet("GetAllSymbols")]
         public IActionResult GetAllSymbols()

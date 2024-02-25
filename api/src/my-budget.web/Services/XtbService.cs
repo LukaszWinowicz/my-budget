@@ -1,5 +1,6 @@
 ﻿using my_budget.web.Models;
 using xAPI.Commands;
+using xAPI.Records;
 using xAPI.Responses;
 using xAPI.Sync;
 
@@ -18,6 +19,7 @@ namespace my_budget.web.Services
             // Login to server
             Credentials credentials = new Credentials(loginModel.userId, loginModel.password, appId, appName);
             LoginResponse loginResponse = APICommandFactory.ExecuteLoginCommand(connector, credentials, true);
+            connector.Streaming.Connect();
 
             return loginResponse;
         }
@@ -28,9 +30,16 @@ namespace my_budget.web.Services
             return tradesResponse;
         }
 
-        //public string GetMyAccountValue()
+        //public string GetMyAccountValueByStreaming()
         //{
-        //    return "null";
+        //    // Connect to streaming
+        //    connector.Streaming.Connect();
+        //    connector.Streaming.BalanceRecordReceived += Streaming_BalanceRecordReceived;
+        //    connector.Streaming.SubscribeBalance();
+
+
+        //    return BalanceRecordReceived;
+
         //}
 
         public IEnumerable<string> GetAllSymbols()
@@ -39,5 +48,8 @@ namespace my_budget.web.Services
             var allSymbols = allSymbolsResponse.SymbolRecords.Select(x => x.Symbol);
             return allSymbols;
         }
+
+
+        
     }
 }
