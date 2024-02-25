@@ -18,7 +18,7 @@ namespace my_budget.web.Controllers
             _xtbService = xtbService;
         }
 
-        [HttpPost]
+        [HttpPost("Login")]
         public IActionResult Legin([FromBody] LoginModel loginModel) 
         {
             
@@ -34,10 +34,9 @@ namespace my_budget.web.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("GetMyTrades")]
         public IActionResult GetMyTrades()
         {
-
             try
             {
                 var response = _xtbService.GetMyTrades();
@@ -48,9 +47,36 @@ namespace my_budget.web.Controllers
 
                 return Unauthorized(new { message = "An exception occured: " + ex.ToString() });
             }
-            
         }
 
+        //[HttpGet]
+        //public IActionResult GetMyAccountValue() 
+        //{
+        //    try
+        //    {
+        //        var response = _xtbService.GetMyAccountValue();
+        //        return Ok(response);
+        //    }
+        //    catch (Exception ex)
+        //    {
 
+        //        throw;
+        //    }
+        //}
+
+        [HttpGet("GetAllSymbols")]
+        public IActionResult GetAllSymbols()
+        {
+            try
+            {
+                var response = _xtbService.GetAllSymbols();                
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+
+                return Unauthorized(new { message = "An exception occured: " + ex.ToString() });
+            }
+        }
     }
 }
