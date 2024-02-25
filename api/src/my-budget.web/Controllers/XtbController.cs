@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿
+
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using my_budget.web.Models;
 using my_budget.web.Services;
@@ -17,27 +19,10 @@ namespace my_budget.web.Controllers
         {
             _xtbService = xtbService;
         }
-
-        [HttpPost]
-        public IActionResult Legin([FromBody] LoginModel loginModel) 
-        {
-            
-            try
-            {
-                var response = _xtbService.Login(loginModel);
-                return Ok(response);
-
-            }
-            catch (Exception ex)
-            {
-                return Unauthorized(new { message = "An exception occured: " + ex.ToString() });
-            }
-        }
-
-        [HttpGet]
+        
+        [HttpGet("GetMyTrades")]
         public IActionResult GetMyTrades()
         {
-
             try
             {
                 var response = _xtbService.GetMyTrades();
@@ -48,9 +33,36 @@ namespace my_budget.web.Controllers
 
                 return Unauthorized(new { message = "An exception occured: " + ex.ToString() });
             }
-            
         }
 
+        //[HttpGet]
+        //public IActionResult GetMyAccountValue() 
+        //{
+        //    try
+        //    {
+        //        var response = _xtbService.GetMyAccountValue();
+        //        return Ok(response);
+        //    }
+        //    catch (Exception ex)
+        //    {
 
+        //        throw;
+        //    }
+        //}
+
+        [HttpGet("GetAllSymbols")]
+        public IActionResult GetAllSymbols()
+        {
+            try
+            {
+                var response = _xtbService.GetAllSymbols();                
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+
+                return Unauthorized(new { message = "An exception occured: " + ex.ToString() });
+            }
+        }
     }
 }

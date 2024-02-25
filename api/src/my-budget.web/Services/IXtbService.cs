@@ -7,5 +7,7 @@ namespace my_budget.web.Services
     {
         LoginResponse Login(LoginModel loginModel);
         TradesResponse GetMyTrades();
+        //string GetMyAccountValue();
+        IEnumerable<string> GetAllSymbols();
     }
 }

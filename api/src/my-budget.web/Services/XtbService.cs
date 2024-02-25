@@ -27,5 +27,17 @@ namespace my_budget.web.Services
             TradesResponse tradesResponse = APICommandFactory.ExecuteTradesCommand(connector, true);
             return tradesResponse;
         }
+
+        //public string GetMyAccountValue()
+        //{
+        //    return "null";
+        //}
+
+        public IEnumerable<string> GetAllSymbols()
+        {
+            AllSymbolsResponse allSymbolsResponse = APICommandFactory.ExecuteAllSymbolsCommand(connector, true);
+            var allSymbols = allSymbolsResponse.SymbolRecords.Select(x => x.Symbol);
+            return allSymbols;
+        }
     }
 }
