@@ -33,12 +33,7 @@ namespace my_budget.web.Services
         public async Task<StreamingBalanceRecord> GetMyAccountValueByStreaming()
         {
             var tcs = new TaskCompletionSource<StreamingBalanceRecord>();
-            Server serverData = Servers.DEMO;
-            SyncAPIConnector connector = new SyncAPIConnector(serverData);
-            Credentials credentials = new Credentials("1234", "haslo");
-            APICommandFactory.ExecuteLoginCommand(connector, credentials);
-            connector.Streaming.Connect();
-
+            
             // Zmieniona metoda obsługi zdarzeń, aby użyć TaskCompletionSource
             void handler(StreamingBalanceRecord balanceRecord)
             {
