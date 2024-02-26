@@ -1,5 +1,6 @@
 ﻿using my_budget.web.Models;
 using xAPI.Commands;
+using xAPI.Records;
 using xAPI.Responses;
 using xAPI.Sync;
 
@@ -18,6 +19,7 @@ namespace my_budget.web.Services
             // Login to server
             Credentials credentials = new Credentials(loginModel.userId, loginModel.password, appId, appName);
             LoginResponse loginResponse = APICommandFactory.ExecuteLoginCommand(connector, credentials, true);
+            connector.Streaming.Connect();
 
             return loginResponse;
         }
@@ -28,10 +30,25 @@ namespace my_budget.web.Services
             return tradesResponse;
         }
 
-        //public string GetMyAccountValue()
-        //{
-        //    return "null";
-        //}
+        public async Task<StreamingBalanceRecord> GetMyAccountValueByStreaming()
+        {
+            var tcs = new TaskCompletionSource<StreamingBalanceRecord>();
+            
+            // Zmieniona metoda obsługi zdarzeń, aby użyć TaskCompletionSource
+            void handler(StreamingBalanceRecord balanceRecord)
+            {
+                tcs.SetResult(balanceRecord);
+                // Opcjonalnie, odłącz handler po otrzymaniu danych
+                connector.Streaming.BalanceRecordReceived -= handler;
+            }
+
+            connector.Streaming.BalanceRecordReceived += handler;
+            connector.Streaming.SubscribeBalance();
+
+            // Oczekiwanie na otrzymanie danych
+            var balanceRecord = await tcs.Task;
+            return balanceRecord;
+        }
 
         public IEnumerable<string> GetAllSymbols()
         {
@@ -39,5 +56,8 @@ namespace my_budget.web.Services
             var allSymbols = allSymbolsResponse.SymbolRecords.Select(x => x.Symbol);
             return allSymbols;
         }
+
+
+        
     }
 }

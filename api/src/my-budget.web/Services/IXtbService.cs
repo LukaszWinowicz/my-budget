@@ -1,4 +1,5 @@
 ﻿using my_budget.web.Models;
+using xAPI.Records;
 using xAPI.Responses;
 
 namespace my_budget.web.Services
@@ -7,7 +8,7 @@ namespace my_budget.web.Services
     {
         LoginResponse Login(LoginModel loginModel);
         TradesResponse GetMyTrades();
-        //string GetMyAccountValue();
+        Task<StreamingBalanceRecord> GetMyAccountValueByStreaming();
         IEnumerable<string> GetAllSymbols();
     }
 }
