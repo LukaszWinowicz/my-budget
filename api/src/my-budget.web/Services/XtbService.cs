@@ -30,17 +30,30 @@ namespace my_budget.web.Services
             return tradesResponse;
         }
 
-        //public string GetMyAccountValueByStreaming()
-        //{
-        //    // Connect to streaming
-        //    connector.Streaming.Connect();
-        //    connector.Streaming.BalanceRecordReceived += Streaming_BalanceRecordReceived;
-        //    connector.Streaming.SubscribeBalance();
+        public async Task<StreamingBalanceRecord> GetMyAccountValueByStreaming()
+        {
+            var tcs = new TaskCompletionSource<StreamingBalanceRecord>();
+            Server serverData = Servers.DEMO;
+            SyncAPIConnector connector = new SyncAPIConnector(serverData);
+            Credentials credentials = new Credentials("1234", "haslo");
+            APICommandFactory.ExecuteLoginCommand(connector, credentials);
+            connector.Streaming.Connect();
 
+            // Zmieniona metoda obsługi zdarzeń, aby użyć TaskCompletionSource
+            void handler(StreamingBalanceRecord balanceRecord)
+            {
+                tcs.SetResult(balanceRecord);
+                // Opcjonalnie, odłącz handler po otrzymaniu danych
+                connector.Streaming.BalanceRecordReceived -= handler;
+            }
 
-        //    return BalanceRecordReceived;
+            connector.Streaming.BalanceRecordReceived += handler;
+            connector.Streaming.SubscribeBalance();
 
-        //}
+            // Oczekiwanie na otrzymanie danych
+            var balanceRecord = await tcs.Task;
+            return balanceRecord;
+        }
 
         public IEnumerable<string> GetAllSymbols()
         {
