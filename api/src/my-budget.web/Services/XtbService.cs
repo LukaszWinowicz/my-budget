@@ -56,8 +56,5 @@ namespace my_budget.web.Services
             var allSymbols = allSymbolsResponse.SymbolRecords.Select(x => x.Symbol);
             return allSymbols;
         }
-
-
-        
     }
 }
