@@ -9,7 +9,6 @@ namespace my_budget.web.Services
         LoginResponse Login(LoginModel loginModel);
         TradesResponse GetMyTrades();
         //Task<StreamingBalanceRecord> GetMyAccountValueByStreaming();
-        string GetCurrentBalance();
         IEnumerable<string> GetAllSymbols();
     }
 }

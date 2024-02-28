@@ -10,7 +10,7 @@ namespace my_budget.web.Services
     {
         private static Server serverData = Servers.DEMO;
         private static SyncAPIConnector connector = new SyncAPIConnector(serverData);
-        private string currentBalance;
+        private StreamingBalanceRecord? currentBalance;
 
         public LoginResponse Login(LoginModel loginModel) 
         {
@@ -50,19 +50,6 @@ namespace my_budget.web.Services
         //    var balanceRecord = await tcs.Task;
         //    return balanceRecord;
         //}
-
-        public string GetCurrentBalance()
-        {
-            connector.Streaming.Connect();
-            connector.Streaming.BalanceRecordReceived += Streaming_BalanceRecordReceived;
-            connector.Streaming.SubscribeBalance();
-            return currentBalance;
-        }
-        void Streaming_BalanceRecordReceived(StreamingBalanceRecord balanceRecord)
-        {
-            currentBalance = balanceRecord.Balance.ToString();
-            // Update shared data structure or notify interested parties
-        }
 
         public IEnumerable<string> GetAllSymbols()
         {

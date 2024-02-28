@@ -28,7 +28,7 @@ namespace my_budget.web.Controllers
         }
 
         [HttpGet("GetMyAccountValueByStreaming")]
-        public async Task<IActionResult> GetMyAccountValueByStreaming()
+        public IActionResult GetMyAccountValueByStreaming()
         {
             try
             {
