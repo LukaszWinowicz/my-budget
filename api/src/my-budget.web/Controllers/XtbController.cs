@@ -32,7 +32,8 @@ namespace my_budget.web.Controllers
         {
             try
             {
-                var response = await _xtbService.GetMyAccountValueByStreaming();
+                //var response = await _xtbService.GetMyAccountValueByStreaming();
+                var response = _xtbService.GetCurrentBalance();
                 return Ok(new { Balance = response.ToString() });
             }
             catch (Exception ex)
