@@ -28,12 +28,11 @@ namespace my_budget.web.Controllers
         }
 
         [HttpGet("GetMyAccountValueByStreaming")]
-        public IActionResult GetMyAccountValueByStreaming()
+        public async Task<IActionResult> GetMyAccountValueByStreaming()
         {
             try
             {
-                //var response = await _xtbService.GetMyAccountValueByStreaming();
-                var response = _xtbService.GetCurrentBalance();
+                var response = await _xtbService.GetMyAccountValueByStreaming();
                 return Ok(new { Balance = response.ToString() });
             }
             catch (Exception ex)
