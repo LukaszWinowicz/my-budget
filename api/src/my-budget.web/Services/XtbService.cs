@@ -33,7 +33,7 @@ namespace my_budget.web.Services
         public async Task<StreamingBalanceRecord> GetMyAccountValueByStreaming()
         {
             var tcs = new TaskCompletionSource<StreamingBalanceRecord>();
-            
+
             // Zmieniona metoda obsługi zdarzeń, aby użyć TaskCompletionSource
             void handler(StreamingBalanceRecord balanceRecord)
             {
@@ -56,8 +56,5 @@ namespace my_budget.web.Services
             var allSymbols = allSymbolsResponse.SymbolRecords.Select(x => x.Symbol);
             return allSymbols;
         }
-
-
-        
     }
 }

@@ -1,13 +1,5 @@
-﻿
-
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using my_budget.web.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using my_budget.web.Services;
-using xAPI.Commands;
-using xAPI.Records;
-using xAPI.Responses;
-using xAPI.Sync;
 
 namespace my_budget.web.Controllers
 {
@@ -31,7 +23,6 @@ namespace my_budget.web.Controllers
             }
             catch (Exception ex)
             {
-
                 return Unauthorized(new { message = "An exception occured: " + ex.ToString() });
             }
         }
@@ -50,7 +41,6 @@ namespace my_budget.web.Controllers
             }
         }
 
-
         [HttpGet("GetAllSymbols")]
         public IActionResult GetAllSymbols()
         {
@@ -61,7 +51,6 @@ namespace my_budget.web.Controllers
             }
             catch (Exception ex)
             {
-
                 return Unauthorized(new { message = "An exception occured: " + ex.ToString() });
             }
         }
